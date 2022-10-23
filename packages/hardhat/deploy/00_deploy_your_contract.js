@@ -1,14 +1,15 @@
+/* eslint-disable prettier/prettier */
 // deploy/00_deploy_your_contract.js
 
-//const { ethers } = require("hardhat");
+// const { ethers } = require("hardhat");
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deploy } = deployments;
   const { deployer } = await getNamedAccounts();
-  await deploy("YourCollectible", {
+  await deploy("NFTFanyRingFoundry", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
-    //args: [ "Hello", ethers.utils.parseEther("1.5") ],
+    // args: [ "Hello", ethers.utils.parseEther("1.5") ],
     log: true,
   });
 
@@ -48,7 +49,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   });
   */
 };
-module.exports.tags = ["YourCollectible"];
+module.exports.tags = ["NFTFanyRingFoundry"];
 
 /*
 Tenderly verification
