@@ -25,8 +25,15 @@ And learn more here: https://www.npmjs.com/package/hardhat-deploy
 
 const main = async () => {
   console.log("\n\n 📡 Deploying...\n");
+  const deployerWallet = ethers.provider.getSigner();
+  const yourCollectible = await deploy("NFTFanyRingFoundry"); // <-- add in constructor args like line 19 vvvv
+  const yourGemContract = await deploy("GEM_ERC20"); // <-- add in constructor args like line 19 vvvv
 
-  const yourCollectible = await deploy("YourCollectible") // <-- add in constructor args like line 19 vvvv
+  await yourGemContract.transfer(
+    deployerWallet._address,
+    "0x3783c988e6436f966B0B19AA948a566d7361bd3d",
+    100
+  );
 
   //const yourContract = await ethers.getContractAt('YourContract', "0xaAC799eC2d00C013f1F11c37E654e59B0429DF6A") //<-- if you want to instantiate a version of a contract at a specific address!
   //const secondContract = await deploy("SecondContract")

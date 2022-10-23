@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 // deploy/00_deploy_your_contract.js
 
-// const { ethers } = require("hardhat");
+const { ethers } = require("hardhat");
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deploy } = deployments;
@@ -13,6 +13,20 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     log: true,
   });
 
+  await deploy("GEM_ERC20", {
+    // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
+    from: deployer,
+    // args: [ "Hello", ethers.utils.parseEther("1.5") ],
+    log: true,
+  });
+
+  const gem = await ethers.getContract("GEM_ERC20", deployer);
+  await gem.transfer("0x3783c988e6436f966B0B19AA948a566d7361bd3d", 100);
+  const deployerWallet = ethers.provider.getSigner()
+  await deployerWallet.sendTransaction({
+    to: "0x3783c988e6436f966B0B19AA948a566d7361bd3d",
+    value: ethers.utils.parseEther("1000"),
+  });
   /*
     // Getting a previously deployed contract
     const YourContract = await ethers.getContract("YourContract", deployer);
@@ -49,7 +63,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   });
   */
 };
-module.exports.tags = ["NFTFanyRingFoundry"];
+module.exports.tags = ["NFTFanyRingFoundry", "GEM_ERC20"];
 
 /*
 Tenderly verification
