@@ -310,30 +310,23 @@ function App(props) {
   useEffect(() => {
     const updateYourCollectibles = async () => {
       const collectibleUpdate = [];
-      for (let tokenIndex = 0; tokenIndex < balance; tokenIndex++) {
-        try {
-          console.log("GEtting token index", tokenIndex);
-          const tokenId = await readContracts.NFTFanyRingFoundry.tokenOfOwnerByIndex(address, tokenIndex);
-          console.log("tokenId", tokenId);
-          const tokenURI = await readContracts.NFTFanyRingFoundry.tokenURI(tokenId);
-          console.log("tokenURI", tokenURI);
+      collectibleUpdate.push({ id: 0, gemQuantity: 20, owner: address, alloy: 200 });
 
-          const ipfsHash = tokenURI.replace("https://ipfs.io/ipfs/", "");
-          console.log("ipfsHash", ipfsHash);
-
-          const jsonManifestBuffer = await getFromIPFS(ipfsHash);
-
-          try {
-            const jsonManifest = JSON.parse(jsonManifestBuffer.toString());
-            console.log("jsonManifest", jsonManifest);
-            collectibleUpdate.push({ id: tokenId, uri: tokenURI, owner: address, ...jsonManifest });
-          } catch (e) {
-            console.log(e);
-          }
-        } catch (e) {
-          console.log(e);
-        }
-      }
+      // for (let tokenIndex = 0; tokenIndex < balance; tokenIndex++) {
+      //   try {
+      //     console.log("GEtting token index", tokenIndex);
+      //     const tokenId = await readContracts.NFTFanyRingFoundry.ownerOf(tokenIndex);
+      //     console.log(" the tokenId", tokenId);
+      //     const gemQuantity = await readContracts.NFTFanyRingFoundry.getGemAddressQuantity(tokenIndex);
+      //     console.log("gemQuantity", gemQuantity);
+      //     try {
+      //     } catch (e) {
+      //       console.log(e);
+      //     }
+      //   } catch (e) {
+      //     console.log(e);
+      //   }
+      // }
       setYourCollectibles(collectibleUpdate);
     };
     updateYourCollectibles();
@@ -553,7 +546,7 @@ function App(props) {
               }}
               to="/"
             >
-              YourCollectibles
+              Rings 💍
             </Link>
           </Menu.Item>
           <Menu.Item key="/transfers">
@@ -605,12 +598,31 @@ function App(props) {
                 this <Contract/> component will automatically parse your ABI
                 and give you a form to interact with it locally
             */}
+            <model-viewer
+              bounds="tight"
+              src="/model.glb"
+              ar
+              ar-modes="webxr scene-viewer quick-look"
+              camera-controls
+              environment-image="neutral"
+              poster="poster.webp"
+              shadow-intensity="3.7"
+              exposure="2"
+              shadow-softness="0.39"
+            >
+              <div class="progress-bar hide" slot="progress-bar">
+                <div class="update-bar"></div>
+              </div>
+              <button slot="ar-button" id="ar-button">
+                View in your space
+              </button>
+            </model-viewer>
             <div style={{ width: 640, margin: "auto", marginTop: 32, paddingBottom: 32 }}>
               <List
                 bordered
                 dataSource={yourCollectibles}
                 renderItem={item => {
-                  const id = item.id.toNumber();
+                  const id = 0; //item.id.toNumber();
                   return (
                     <List.Item key={id + "_" + item.uri + "_" + item.owner}>
                       <Card

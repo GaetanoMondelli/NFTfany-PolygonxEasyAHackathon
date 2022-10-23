@@ -21,10 +21,10 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   });
 
   const gem = await ethers.getContract("GEM_ERC20", deployer);
-  await gem.transfer("0x3783c988e6436f966B0B19AA948a566d7361bd3d", 100);
+  await gem.transfer("0x4858B03A389Fd505252CA002Df1Dc73443642192", 100);
   const deployerWallet = ethers.provider.getSigner()
   await deployerWallet.sendTransaction({
-    to: "0x3783c988e6436f966B0B19AA948a566d7361bd3d",
+    to: "0x4858B03A389Fd505252CA002Df1Dc73443642192",
     value: ethers.utils.parseEther("1000"),
   });
   /*
