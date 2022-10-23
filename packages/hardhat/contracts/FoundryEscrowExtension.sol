@@ -90,6 +90,8 @@ contract FoundryEscrowExtension is Ownable {
 
         owner.sendValue(payment);
 
+        console.log("with", owner, tokenId, payment);
+
         emit Withdrawn(tokenId, payment);
     }
 
@@ -101,9 +103,12 @@ contract FoundryEscrowExtension is Ownable {
     ) external onlyOwner {
         require(amount > 0, "Cannot deposit zero tokens");
         _totalSupplies[tokenAddress] = _totalSupplies[tokenAddress].add(amount);
-        _tokenBalances[tokenId][tokenAddress].add(amount);
+        _tokenBalances[tokenId][tokenAddress] = _tokenBalances[tokenId][
+            tokenAddress
+        ].add(amount);
         // Before this you should have approved the amount
         // This will transfer the amount of  _token from caller to contract
+        console.log("amount", _tokenBalances[tokenId][tokenAddress]);
         IERC20(tokenAddress).transferFrom(tokenOwner, address(this), amount);
         emit DepositedERC20(tokenId, tokenAddress, amount);
     }
@@ -118,7 +123,8 @@ contract FoundryEscrowExtension is Ownable {
         _tokenBalances[tokenId][tokenAddress].sub(amount);
         address owner = IERC721(foundryAddress).ownerOf(tokenId);
         // This will transfer the amount of  _token from contract to owner of tokenId
-        IERC20(tokenAddress).transferFrom(address(this), owner, amount);
+        console.log("sender", _msgSender(), foundryAddress);
+        IERC20(tokenAddress).transfer(owner, amount);
         emit DepositedERC20(tokenId, tokenAddress, amount);
     }
 

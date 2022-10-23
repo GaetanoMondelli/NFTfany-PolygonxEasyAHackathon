@@ -6154,6 +6154,11 @@ center-align@^0.1.1:
     align-text "^0.1.3"
     lazy-cache "^1.0.3"
 
+chai-bignumber@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/chai-bignumber/-/chai-bignumber-3.1.0.tgz#e196456c760df21f0e124f6df922289ea15a7e4c"
+  integrity sha512-omxEc80jAU+pZwRmoWr3aEzeLad4JW3iBhLRQlgISvghBdIxrMT7mVAGsDz4WSyCkKowENshH2j9OABAhld7QQ==
+
 chai@^4.2.0:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/chai/-/chai-4.3.4.tgz#b55e655b31e1eac7099be4c08c21964fce2e6c49"

@@ -66,5 +66,7 @@
       "**/hardhat-ts/**"
     ]
   },
-  "dependencies": {}
+  "dependencies": {
+    "chai-bignumber": "^3.1.0"
+  }
 }

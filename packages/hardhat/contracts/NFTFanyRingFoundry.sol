@@ -127,9 +127,9 @@ contract NFTFanyRingFoundry is ERC721, Ownable {
         uint256 id = _tokenIds.current();
         foundryEscrow.deposit{value: msg.value}(id);
         foundryAlloyCapacity -= msg.value;
-
         _gemAllocation[gemAddress].increment();
         _gemMap[id] = gemAddress;
+
         foundryEscrow.depositERC20(id, gemAddress, msg.sender, gemQuantity);
 
         _engravings[id] = engraving;
