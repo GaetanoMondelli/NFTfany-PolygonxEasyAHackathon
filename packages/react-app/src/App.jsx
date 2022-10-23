@@ -45,6 +45,7 @@ import Authereum from "authereum";
 
 const { ethers } = require("ethers");
 
+import '@google/model-viewer';
 /*
     Welcome to 🏗 scaffold-eth !
 
@@ -598,6 +599,12 @@ function App(props) {
                 this <Contract/> component will automatically parse your ABI
                 and give you a form to interact with it locally
             */}
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+
+            "NFTFanyRingFoundry"
             <model-viewer
               bounds="tight"
               src="/model.glb"
